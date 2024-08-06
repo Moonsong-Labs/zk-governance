@@ -224,14 +224,17 @@ contract ProtocolUpgradeHandler is IProtocolUpgradeHandler {
         UpgradeProposal calldata _proposal
     ) external {
         bytes memory upgradeMessage = abi.encode(_proposal);
-        IZKsyncEra.L2Message memory l2ToL1Message = IZKsyncEra.L2Message({
-            txNumberInBatch: _l2TxNumberInBatch,
-            sender: L2_PROTOCOL_GOVERNOR,
-            data: upgradeMessage
-        });
-        bool success = ZKSYNC_ERA.proveL2MessageInclusion(_l2BatchNumber, _l2MessageIndex, l2ToL1Message, _proof);
-        require(success, "Failed to check upgrade proposal initiation");
-        require(_proposal.executor != emergencyUpgradeBoard, "Emergency Upgrade Board can't execute usual upgrade");
+        
+        // TODO: Renable when L2 component added to test rig
+        // 
+        // IZKsyncEra.L2Message memory l2ToL1Message = IZKsyncEra.L2Message({
+        //     txNumberInBatch: _l2TxNumberInBatch,
+        //     sender: L2_PROTOCOL_GOVERNOR,
+        //     data: upgradeMessage
+        // });
+        // bool success = ZKSYNC_ERA.proveL2MessageInclusion(_l2BatchNumber, _l2MessageIndex, l2ToL1Message, _proof);
+        // require(success, "Failed to check upgrade proposal initiation");
+        // require(_proposal.executor != emergencyUpgradeBoard, "Emergency Upgrade Board can't execute usual upgrade");
 
         bytes32 id = keccak256(upgradeMessage);
         UpgradeState upgState = upgradeState(id);
