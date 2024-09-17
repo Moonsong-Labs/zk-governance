@@ -390,14 +390,15 @@ contract ProtocolUpgradeHandler is IProtocolUpgradeHandler {
 
     /// @dev Freeze all ZKsync contracts, including bridges, state transition managers and all hyperchains.
     function _freeze() internal {
-        uint256[] memory hyperchainIds = STATE_TRANSITION_MANAGER.getAllHyperchainChainIDs();
-        uint256 len = hyperchainIds.length;
-        for (uint256 i = 0; i < len; ++i) {
-            try STATE_TRANSITION_MANAGER.freezeChain(hyperchainIds[i]) {} catch {}
-        }
+        // TODO: uncomment when properly deployed an L2 node
+        // uint256[] memory hyperchainIds = STATE_TRANSITION_MANAGER.getAllHyperchainChainIDs();
+        // uint256 len = hyperchainIds.length;
+        // for (uint256 i = 0; i < len; ++i) {
+        //     try STATE_TRANSITION_MANAGER.freezeChain(hyperchainIds[i]) {} catch {}
+        // }
 
-        try BRIDGE_HUB.pause() {} catch {}
-        try SHARED_BRIDGE.pause() {} catch {}
+        // try BRIDGE_HUB.pause() {} catch {}
+        // try SHARED_BRIDGE.pause() {} catch {}
     }
 
     /// @dev Unfreezes the protocol and resumes normal operations.
@@ -434,14 +435,15 @@ contract ProtocolUpgradeHandler is IProtocolUpgradeHandler {
 
     /// @dev Unfreeze all ZKsync contracts, including bridges, state transition managers and all hyperchains.
     function _unfreeze() internal {
-        uint256[] memory hyperchainIds = STATE_TRANSITION_MANAGER.getAllHyperchainChainIDs();
-        uint256 len = hyperchainIds.length;
-        for (uint256 i = 0; i < len; ++i) {
-            try STATE_TRANSITION_MANAGER.unfreezeChain(hyperchainIds[i]) {} catch {}
-        }
+        // TODO: uncomment when properly deployed an L2 node
+        // uint256[] memory hyperchainIds = STATE_TRANSITION_MANAGER.getAllHyperchainChainIDs();
+        // uint256 len = hyperchainIds.length;
+        // for (uint256 i = 0; i < len; ++i) {
+        //     try STATE_TRANSITION_MANAGER.unfreezeChain(hyperchainIds[i]) {} catch {}
+        // }
 
-        try BRIDGE_HUB.unpause() {} catch {}
-        try SHARED_BRIDGE.unpause() {} catch {}
+        // try BRIDGE_HUB.unpause() {} catch {}
+        // try SHARED_BRIDGE.unpause() {} catch {}
     }
 
     /*//////////////////////////////////////////////////////////////

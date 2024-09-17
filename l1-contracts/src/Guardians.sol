@@ -115,15 +115,16 @@ contract Guardians is IGuardians, Multisig, EIP712 {
             IL2Governor.cancel,
             (_l2Proposal.targets, _l2Proposal.values, _l2Proposal.calldatas, keccak256(bytes(_l2Proposal.description)))
         );
-        ZKSYNC_ERA.requestL2Transaction{value: _txRequest.txMintValue}(
-            _txRequest.to,
-            0,
-            cancelCalldata,
-            _txRequest.l2GasLimit,
-            _txRequest.l2GasPerPubdataByteLimit,
-            new bytes[](0),
-            _txRequest.refundRecipient
-        );
+        // TODO: uncomment when properly deployed an L2 node
+        // ZKSYNC_ERA.requestL2Transaction{value: _txRequest.txMintValue}(
+        //     _txRequest.to,
+        //     0,
+        //     cancelCalldata,
+        //     _txRequest.l2GasLimit,
+        //     _txRequest.l2GasPerPubdataByteLimit,
+        //     new bytes[](0),
+        //     _txRequest.refundRecipient
+        // );
     }
 
     /// @notice Propose ZKsync proposal on one the L2 governors, by the 5 of 8 Guardians approvals.
