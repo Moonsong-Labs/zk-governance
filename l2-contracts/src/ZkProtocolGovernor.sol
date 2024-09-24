@@ -140,7 +140,9 @@ contract ZkProtocolGovernor is
     bytes[] memory _calldatas,
     bytes32 _descriptionHash
   ) internal virtual override(Governor, GovernorTimelockControl) {
-    return GovernorTimelockControl._execute(_proposalId, _targets, _values, _calldatas, _descriptionHash);
+    // Removed timelock check for development. TODO: uncomment when properly deployed an L2 node
+    // return GovernorTimelockControl._execute(_proposalId, _targets, _values, _calldatas, _descriptionHash);
+    return Governor._execute(_proposalId, _targets, _values, _calldatas, _descriptionHash);
   }
 
   /// @inheritdoc GovernorTimelockControl
